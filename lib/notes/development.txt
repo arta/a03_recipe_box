@@ -1,6 +1,10 @@
 ###############################################################################
 12-11-16: #####################################################################
+###############################################################################
+• Ignore paperclip attachments by adding to .gitignore:
+  /public/system/*/images
+###############################################################################
 • configure better_errors for atom (and Rails Panel?)
-https://github.com/charliesome/better_errors/issues/314
-http://railscasts.com/episodes/402-better-errors-railspanel?view=asciicast
+  https://github.com/charliesome/better_errors/issues/314
+  http://railscasts.com/episodes/402-better-errors-railspanel?view=asciicast
 ###############################################################################
