@@ -1,1 +1,10 @@
 %h1 Recipes Index
+
+=link_to '+ Recipe', new_recipe_path, class:'btn btn-default'
+
+-@recipes.each do |recipe|
+  %h2= link_to recipe.title, recipe
+  =recipe.description.truncate_words( 3, omission:' ...' )
+  .btn-group
+    =link_to 'Edit', edit_recipe_path( recipe ), class:'btn btn-default'
+    =link_to 'Delete', recipe, method: :delete, data:{ confirm:'Are you sure?' }, class:'btn btn-default'

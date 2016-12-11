@@ -42,7 +42,7 @@ class RecipesController < ApplicationController
   # PATCH|PUT /recipes/:id
   # =form_for @recipe do ..            <- if persisted
   def update
-    if @recipe.udpate( recipe_params )
+    if @recipe.update( recipe_params )
       redirect_to @recipe, notice:'Successfully updated recipe.'
     else
       render 'edit'
@@ -53,7 +53,7 @@ class RecipesController < ApplicationController
   # =link_to .. recipe_path( @recipe ), method: :delete
   def destroy
     @recipe.destroy
-    redirect_to request.referer || recipes_path, notice:'Successfully deleted recipe.'
+    redirect_to recipes_path, notice:'Successfully deleted recipe.'
   end
 
   private

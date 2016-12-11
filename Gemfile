@@ -26,4 +26,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 12-9-16:
+gem 'simple_form', '~> 3.3', '>= 3.3.1'
 gem 'haml-rails', '~> 0.9.0'
