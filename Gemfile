@@ -22,6 +22,11 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # 12-11-16:
+  # gem 'bullet' # bust N+1 queries, to configure, see homepage
+  gem 'better_errors' # for `Session Expired` see homepage for puma server caveat
+  # gem 'binding_of_caller' # slows error page loading significantly; bundle only when needed
+  gem 'meta_request' # after better_errors, according to RailsCasts 402
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
