@@ -2,6 +2,17 @@
 %h1= @recipe.title
 %p= @recipe.description
 
+-if @recipe.ingredients.present?
+  %ul
+    Ingredients:
+    -@recipe.ingredients.each do |ingredient|
+      %li= ingredient.name
+-if @recipe.directions.present?
+  %ul
+    Directions:
+    -@recipe.directions.each do |direction|
+      %li= direction.step
+
 %br
 
 =link_to 'Recipes', recipes_path, class:'btn btn-default'

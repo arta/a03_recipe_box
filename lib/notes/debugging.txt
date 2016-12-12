@@ -1,0 +1,64 @@
+###############################################################################
+12-12-16: #####################################################################
+###############################################################################
+• ERROR (3). Posting to /recipes threw a plain vanilla Rails validation error:
+
+    New Recipe
+    2 errors prevented this recipe from saving.
+      • Ingredients recipe must exist
+      • Directions recipe must exist
+
+: ISSUE: google for 'cocoon validation error message nested model must exist':
+  https://www.sitepoint.com/better-nested-attributes-in-rails-with-the-cocoon-gem/
+  And there it is:
+    "... If you are using Rails 5.0, like me, you’ll see a pretty strange error
+    “Addresses place must exist” preventing the form from being submitted.
+    This appears to be a major bug in Rails 5 that is related to the new
+    belongs_to_required_by_default option set to true. ..."
+: SOLUTION: of the 3 solutions, I liked this most:
+
+    recipe.rb
+      has_many :ingredients, dependent: :destroy, inverse_of: :recipe
+      has_many :directions,  dependent: :destroy, inverse_of: :recipe
+
+###############################################################################
+• ERROR (2). Fixed error (1), and reloaded /recipes/new only to see:
+
+    NoMethodError at /recipes/new
+    undefined method `new_record?' for nil:NilClass
+
+: This time I knew where to look (well, better_errors highlighted line it is):
+
+    =simple_fields_for :ingredients do |ff|
+
+: ISSUE: there's a missing `f` receiver for .simple_fields_for !!!!
+  The simple_fields_for are, of course, nested in a simple_form_for, so, just
+  like any other form element, .simple_fields_for are sent to `f`:
+: SOLUTION:
+
+    =f.simple_fields_for ...
+
+: The reason for the issue (1) was an overlook. For (2), at least part of
+  the problem was that I wrote the partials yesterday, but nested
+  the =simple_fields_for in the _form.html.haml today ... and forgot
+  about it being sent to the form builder `f`
+
+###############################################################################
+• ERROR (1) Visiting /recipes/new during implementation of nested forms for
+  ingredients and directions returned a mysterious:
+
+    NoMethodError at /recipes/new
+    undefined method `link_to_remove_association' for #<SimpleForm::FormBuilder:0x007f8a6f2cae88>
+
+: No ideas .. then I noticed that the better_errors highlighted line in the
+  _ingredient_fields.html.haml partial was actually the error location:
+
+    =f.link_to_remove_association "Remove", f
+
+: ISSUE: there is the form builder `f` is not a receiver for cocoon's
+  link_to_remove_association. It itself receives the `f` as an argument. :)
+: SOLUTION:
+
+    =link_to_remove_association "Remove", f
+
+###############################################################################

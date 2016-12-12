@@ -1,13 +1,23 @@
 ###############################################################################
 12-11-16: #####################################################################
+###############################################################################
+• Difference between :references v. :belongs_to in migrations?
+: Wondering when generating models Ingredient and Direction.
+: To capture contextual semantics? Since they are aliases, it's possible:
+  http://stackoverflow.com/questions/7788188/what-is-the-difference-between-t-belongs-to-and-t-references-in-rails
+
+###############################################################################
 • Beware of nested models' strong params gotcha.
 : See an explanatory brief by the author of cocoon gem:
   https://github.com/nathanvda/cocoon#strong-parameters-gotcha
+
 ###############################################################################
 • Ignore paperclip attachments by adding to .gitignore:
   /public/system/*/images
+
 ###############################################################################
 • configure better_errors for atom (and Rails Panel?)
   https://github.com/charliesome/better_errors/issues/314
   http://railscasts.com/episodes/402-better-errors-railspanel?view=asciicast
+
 ###############################################################################
