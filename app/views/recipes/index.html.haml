@@ -1,10 +1,10 @@
--@recipes.each do |recipe|
-  .recipe
-    -if recipe.image.present?
-      =link_to recipe do
-        =image_tag recipe.image.url( :medium ), class:'recipe_image'
-    %h2= link_to recipe.title, recipe
-    %p= recipe.description.truncate_words( 3, omission:' ...' )
-    .btn-group
-      =link_to 'Edit', edit_recipe_path( recipe ), class:'btn btn-default'
-      =link_to 'Delete', recipe, method: :delete, data:{ confirm:'Are you sure?' }, class:'btn btn-default'
+-@recipes.each_slice(3) do |recipes|
+  .row
+    -recipes.each do |recipe|
+      .col-md-4
+        .recipe
+          .image_wrapper
+            =link_to recipe do
+              =image_tag recipe.image.url( :medium )
+          %h2= link_to recipe.title, recipe
+          -# %p= recipe.description.truncate_words( 3, ommission:' ...' )
