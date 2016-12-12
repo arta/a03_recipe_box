@@ -1,5 +1,8 @@
 ###############################################################################
 12-11-16: #####################################################################
+• Beware of nested models' strong params gotcha.
+: See an explanatory brief by the author of cocoon gem:
+  https://github.com/nathanvda/cocoon#strong-parameters-gotcha
 ###############################################################################
 • Ignore paperclip attachments by adding to .gitignore:
   /public/system/*/images
