@@ -1,20 +1,28 @@
-=image_tag @recipe.image.url( :medium ), class:'recipe_image'
-%h1= @recipe.title
-%p= @recipe.description
+.main_content
+  .row#recipe_top
+    .col-md-4
+      =image_tag @recipe.image.url( :medium ), class:'recipe_image'
+    .col-md-8
+      #recipe_info
+        %h1= @recipe.title
+        %p.description= @recipe.description
 
--if @recipe.ingredients.present?
-  %ul
-    Ingredients:
-    -@recipe.ingredients.each do |ingredient|
-      %li= ingredient.name
--if @recipe.directions.present?
-  %ul
-    Directions:
-    -@recipe.directions.each do |direction|
-      %li= direction.step
+  .row
+    .col-md-6
+      #ingredients
+        %h2 Ingredients
+        %ul
+          -@recipe.ingredients.each do |ingredient|
+            %li= ingredient.name
+    .col-md-6
+      #directions
+        %h2 Directions
+        %ul
+          -@recipe.directions.each do |direction|
+            %li= direction.step
 
-%br
-
-=link_to 'Recipes', recipes_path, class:'btn btn-default'
-=link_to 'Edit', edit_recipe_path, class:'btn btn-default'
-=link_to 'Delete', @recipe, method: :delete, data:{ confirm:'Are you sure?' }, class:'btn btn-default'
+  .row
+    .col-md-12
+      =link_to 'Recipes', recipes_path, class:'btn btn-default'
+      =link_to 'Edit', edit_recipe_path, class:'btn btn-default'
+      =link_to 'Delete', @recipe, method: :delete, data:{ confirm:'Are you sure?' }, class:'btn btn-default'
