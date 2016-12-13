@@ -30,6 +30,8 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# 12-12-16:
+gem 'devise', '~> 4.2'
 # 12-11-16:
 gem 'cocoon', '~> 1.2', '>= 1.2.9'
 gem 'paperclip', '~> 5.1'
