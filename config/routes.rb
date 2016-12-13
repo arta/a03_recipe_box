@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :recipes
   # get 'recipes',          to:'recipes#index'
   # get 'recipes/new',      to:'recipes#new',  as:'new_recipe' # precede greedy 'recipes/:some_variable'
