@@ -10,4 +10,4 @@
           -# %p= recipe.description.truncate_words( 3, ommission:' ...' )
           %p{ style:'padding:0 0 16px 16px;' }
             By
-            =recipe.user == current_user ? 'Myself' : recipe.user.email
+            =recipe.user == current_user ? 'Myself' : recipe.user.username
