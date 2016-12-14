@@ -1,10 +1,13 @@
 -@recipes.each_slice(3) do |recipes|
   .row
     -recipes.each do |recipe|
-      .col-md-4
+      .col-md-4.col-sm-6.col-xs-8
         .recipe
           .image_wrapper
             =link_to recipe do
               =image_tag recipe.image.url( :medium )
           %h2= link_to recipe.title, recipe
           -# %p= recipe.description.truncate_words( 3, ommission:' ...' )
+          %p{ style:'padding:0 0 16px 16px;' }
+            By
+            =recipe.user == current_user ? 'Myself' : recipe.user.email

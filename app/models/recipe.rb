@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  # belongs_to :user
+  belongs_to :user
 
   # https://www.sitepoint.com/better-nested-attributes-in-rails-with-the-cocoon-gem/
   has_many :ingredients, dependent: :destroy, inverse_of: :recipe

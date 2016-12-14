@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only:[:show, :edit, :update, :destroy]
+  before_action :set_recipe,         only:   [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /recipes
   # =link_to .. recipes_path
@@ -11,14 +12,14 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   # =link_to .. new_recipe_path
   def new
-    @recipe = Recipe.new
+    @recipe = current_user.recipes.new
   end
   # Implicitly renders new.html.haml
 
   # POST /recipes
   # =form_for @recipe do ..            <- if new_record
   def create
-    @recipe = Recipe.new( recipe_params )
+    @recipe = current_user.recipes.new( recipe_params )
     if @recipe.save
       redirect_to @recipe, notice:'Successfully created recipe.'
     else

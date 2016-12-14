@@ -1,11 +1,14 @@
 .main_content
   .row#recipe_top
-    .col-md-4
+    .col-md-4.col-sm-6.col-xs-5
       =image_tag @recipe.image.url( :medium ), class:'recipe_image'
-    .col-md-8
+    .col-md-8.col-sm-6.col-xs-7
       #recipe_info
         %h1= @recipe.title
         %p.description= @recipe.description
+        %p
+          Submited by
+          =@recipe.user == current_user ? 'Myself' : @recipe.user.email
 
   .row
     .col-md-6
@@ -24,5 +27,6 @@
   .row
     .col-md-12
       =link_to 'Recipes', recipes_path, class:'btn btn-default'
-      =link_to 'Edit', edit_recipe_path, class:'btn btn-default'
-      =link_to 'Delete', @recipe, method: :delete, data:{ confirm:'Are you sure?' }, class:'btn btn-default'
+      -if @recipe.user == current_user
+        =link_to 'Edit', edit_recipe_path, class:'btn btn-default'
+        =link_to 'Delete', @recipe, method: :delete, data:{ confirm:'Are you sure?' }, class:'btn btn-default'
